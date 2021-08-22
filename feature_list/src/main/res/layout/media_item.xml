@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="media"
+            type="com.android.sample.core.response.Media" />
+
+        <variable
+            name="callback"
+            type="com.android.sample.feature.list.ui.MediaAdapter.OnClickListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{() -> callback.onClick(media)}"
+        app:cardElevation="@dimen/spacing_mini">
+
+        <ImageView
+            style="@style/Widget.Label"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/media_item_height"
+            android:layout_margin="@dimen/spacing_mini"
+            app:imageUrl="@{media.thumbnailUrl}"/>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
