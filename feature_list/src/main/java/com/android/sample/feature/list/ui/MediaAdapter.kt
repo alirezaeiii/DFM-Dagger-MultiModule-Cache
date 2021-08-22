@@ -49,7 +49,7 @@ class MediaAdapter(
     }
 
     /**
-     * Allows the RecyclerView to determine which items have changed when the [List] of [Link]
+     * Allows the RecyclerView to determine which items have changed when the [List] of [Media]
      * has been updated.
      */
     companion object DiffCallback : DiffUtil.ItemCallback<Media>() {
@@ -63,9 +63,9 @@ class MediaAdapter(
     }
 
     /**
-     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [Link]
+     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [Media]
      * associated with the current item to the [onClick] function.
-     * @param clickListener lambda that will be called with the current [Link]
+     * @param clickListener lambda that will be called with the current [Media]
      */
     class OnClickListener(val clickListener: (link: Media) -> Unit) {
         fun onClick(link: Media) = clickListener(link)
