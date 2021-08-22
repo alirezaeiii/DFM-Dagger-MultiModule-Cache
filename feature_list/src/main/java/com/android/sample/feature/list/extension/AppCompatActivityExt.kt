@@ -1,4 +1,4 @@
-package com.android.sample.common.extension
+package com.android.sample.feature.list.extension
 
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
