@@ -40,6 +40,7 @@ class DetailFragment : Fragment() {
     ): View {
         val binding = FragmentDetailBinding.inflate(inflater, container, false)
         binding.media = media
+        binding.toolbar.title = ""
 
         val timestamp = DateTimeParser.toMillis(media.createdAt)
         (activity as AppCompatActivity).setupActionBar(binding.toolbar) {
