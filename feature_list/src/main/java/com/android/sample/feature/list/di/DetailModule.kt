@@ -1,13 +1,9 @@
 package com.android.sample.feature.list.di
 
 import androidx.navigation.fragment.navArgs
-import com.android.sample.common.base.BaseRepository
-import com.android.sample.common.extension.viewModel
-import com.android.sample.common.util.schedulers.BaseSchedulerProvider
 import com.android.sample.core.response.Media
 import com.android.sample.feature.list.ui.DetailFragment
 import com.android.sample.feature.list.ui.DetailFragmentArgs
-import com.android.sample.feature.list.viewmodel.DetailViewModel
 import dagger.Module
 import dagger.Provides
 
@@ -15,16 +11,7 @@ import dagger.Provides
 class DetailModule(private val fragment: DetailFragment) {
 
     @Provides
-    fun provideDetailViewModel(
-        repository: BaseRepository<Media>,
-        schedulerProvider: BaseSchedulerProvider,
-        media: Media
-    ) = fragment.viewModel {
-        DetailViewModel(repository, schedulerProvider, media)
-    }
-
-    @Provides
-    internal fun provideLink(): Media {
+    internal fun provideMedia(): Media {
         val args: DetailFragmentArgs by fragment.navArgs()
         return args.media
     }

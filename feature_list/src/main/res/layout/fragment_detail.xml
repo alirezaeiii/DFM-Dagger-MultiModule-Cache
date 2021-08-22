@@ -7,10 +7,6 @@
     <data>
 
         <variable
-            name="vm"
-            type="com.android.sample.feature.list.viewmodel.DetailViewModel" />
-
-        <variable
             name="media"
             type="com.android.sample.core.response.Media" />
 
@@ -31,35 +27,10 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            style="@style/ErrorTextViewStyle"
-            app:showError="@{vm.liveData}" />
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_refresh"
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:onRefreshListener="@{()->vm.loadItems(true)}"
-            app:refreshing="@{vm.liveData}">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:showData="@{vm.liveData}">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:imageUrl="@{media.thumbnailUrl}" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            app:imageUrl="@{media.thumbnailUrl}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
