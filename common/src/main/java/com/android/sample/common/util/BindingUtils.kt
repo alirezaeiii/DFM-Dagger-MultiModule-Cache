@@ -1,7 +1,9 @@
 package com.android.sample.common.util
 
+import android.text.format.DateUtils
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -35,4 +37,16 @@ fun <T> View.showError(viewState: ViewState<T>?) {
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, url: String?) {
     Glide.with(imageView.context).load(url).into(imageView)
+}
+
+@BindingAdapter("descriptive_date")
+fun setDescriptiveDate(toolbar: Toolbar, timestamp: Long) {
+    val now = System.currentTimeMillis()
+    val relativeDate = DateUtils.getRelativeTimeSpanString(
+        timestamp,
+        now,
+        DateUtils.SECOND_IN_MILLIS,
+        DateUtils.FORMAT_ABBREV_RELATIVE
+    )
+    toolbar.title = relativeDate
 }

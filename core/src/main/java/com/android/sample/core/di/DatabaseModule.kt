@@ -18,7 +18,7 @@ class DatabaseModule {
             context,
             MyDatabase::class.java,
             BuildConfig.DATABASE_NAME
-        ).build()
+        ).allowMainThreadQueries().build()
 
     @Singleton
     @Provides

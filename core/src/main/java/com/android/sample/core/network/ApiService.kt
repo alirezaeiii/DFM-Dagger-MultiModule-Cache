@@ -11,14 +11,8 @@ interface ApiService {
     @GET("shared/{sharedID}/media")
     fun getMedia(
         @Path("sharedID") sharedID: String,
-        @Query("m") resizeMode: String
-    ): Observable<List<Media>>
-
-    @GET("/shared/{id}")
-    fun getMedia(
-        @Path("id") id: String,
+        @Query("m") resizeMode: String,
         @Query("w") width: Int,
-        @Query("h") height: Int,
-        @Query("m") resizeMode: String
-    ): Observable<Media>
+        @Query("h") height: Int
+    ): Observable<List<Media>>
 }
