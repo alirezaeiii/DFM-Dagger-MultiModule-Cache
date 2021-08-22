@@ -11,16 +11,7 @@ class DbMedia(
     val thumbnailUrl: String
 )
 
-fun List<DbMedia>.asDomainModel(): List<Media> {
-    val medias = ArrayList<Media>()
-    this.forEach { media ->
-        medias.add(
-            Media(
-                id = media.id,
-                createdAt = media.createdAt,
-                thumbnailUrl = media.thumbnailUrl
-            )
-        )
-    }
-    return medias
-}
+fun List<DbMedia>.asDomainModel(): List<Media> = map { Media(
+        id = it.id,
+        createdAt = it.createdAt,
+        thumbnailUrl = it.thumbnailUrl) }

@@ -9,4 +9,4 @@ import javax.inject.Inject
 class MediaViewModel @Inject constructor(
     repository: BaseListRepository<Media>,
     schedulerProvider: BaseSchedulerProvider,
-) : BaseListViewModel<Media>(repository, schedulerProvider, null)
+) : BaseListViewModel<Media>(repository, schedulerProvider)

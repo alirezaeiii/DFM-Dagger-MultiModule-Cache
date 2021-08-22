@@ -14,16 +14,7 @@ data class Media(
     val thumbnailUrl: String
 ) : Parcelable
 
-fun List<Media>.asDatabaseModel(): List<DbMedia> {
-    val dbMedias = ArrayList<DbMedia>()
-    this.forEach { media ->
-        dbMedias.add(
-            DbMedia(
-                id = media.id,
-                createdAt = media.createdAt,
-                thumbnailUrl = media.thumbnailUrl
-            )
-        )
-    }
-    return dbMedias
-}
+fun List<Media>.asDatabaseModel(): List<DbMedia> = map { DbMedia(
+        id = it.id,
+        createdAt = it.createdAt,
+        thumbnailUrl = it.thumbnailUrl) }

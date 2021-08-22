@@ -9,7 +9,7 @@ import io.reactivex.Completable
 @Dao
 interface MediaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(data: List<DbMedia>): Completable
+    fun insert(medias: List<DbMedia>): Completable
 
     @Query("SELECT * FROM media")
     fun getMedia(): List<DbMedia>?

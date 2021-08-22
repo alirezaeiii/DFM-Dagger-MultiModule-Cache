@@ -6,7 +6,6 @@ import android.view.WindowManager
 import com.android.sample.common.base.BaseListRepository
 import com.android.sample.common.util.Constants.BOUNDING_BOX
 import com.android.sample.common.util.Constants.CROP
-import com.android.sample.common.util.Constants.MINIMUM_SIZE
 import com.android.sample.common.util.Constants.SHARED_ID
 import com.android.sample.core.database.MediaDao
 import com.android.sample.core.database.asDomainModel
@@ -35,11 +34,11 @@ class MediaRepository @Inject constructor(
         height = metrics.heightPixels
     }
 
-    override fun getResultFromRemoteDataSource(mediaId: String?): Observable<List<Media>> =
+    override fun getResultFromRemoteDataSource(): Observable<List<Media>> =
         remoteDataSource.getMedia(SHARED_ID, "$CROP,$BOUNDING_BOX", width, height).flatMap {
             dao.insert(it.asDatabaseModel()).andThen(Observable.fromCallable { it })
         }
 
-    override val resultFromLocalDataSource: List<Media>? =
+    override fun getResultFromLocalDataSource(): List<Media>? =
         dao.getMedia()?.asDomainModel()
 }

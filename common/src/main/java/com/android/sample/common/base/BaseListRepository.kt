@@ -4,7 +4,10 @@ import io.reactivex.Observable
 
 abstract class BaseListRepository<T> : BaseRepository<List<T>>() {
 
-    abstract override fun getResultFromRemoteDataSource(mediaId: String?): Observable<List<T>>
+    abstract override fun getResultFromRemoteDataSource(): Observable<List<T>>
 
-    abstract override val resultFromLocalDataSource: List<T>?
+    abstract override fun getResultFromLocalDataSource(): List<T>?
+
+    override fun isEmpty(resultFromLocalDataSource : List<T>?) =
+        resultFromLocalDataSource?.isEmpty()!!
 }
