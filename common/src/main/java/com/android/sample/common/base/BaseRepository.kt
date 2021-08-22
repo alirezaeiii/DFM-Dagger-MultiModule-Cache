@@ -7,22 +7,22 @@ abstract class BaseRepository<T> {
 
     private var cacheIsDirty = false
 
-    protected abstract fun getResultFromRemoteDataSource(): Observable<T>
+    protected abstract val resultFromRemoteDataSource: Observable<T>
 
-    protected abstract fun getResultFromLocalDataSource(): T?
+    protected abstract val resultFromLocalDataSource: T?
 
-    private fun getRemoteResult() = getResultFromRemoteDataSource()
+    private fun getRemoteResult() = resultFromRemoteDataSource
         .doOnComplete { cacheIsDirty = false }
 
     open fun isEmpty( resultFromLocalDataSource: T?) =
         resultFromLocalDataSource == null
 
-    fun getResult(): Observable<T> =
+    val result: Observable<T> =
         Observable.fromCallable { cacheIsDirty }.flatMap {
             if (it) {
                 getRemoteResult()
             } else {
-                val resultFromLocalDataSource = getResultFromLocalDataSource()
+                val resultFromLocalDataSource = resultFromLocalDataSource
                 Observable.create { subscriber ->
                     if (isEmpty(resultFromLocalDataSource)) {
                         subscriber.onError(NoDataException())

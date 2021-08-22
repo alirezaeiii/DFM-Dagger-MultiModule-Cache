@@ -34,7 +34,7 @@ open class BaseViewModel<T>(
             repository.refresh()
         }
         _liveData.value = ViewState.Loading
-        repository.getResult().subscribeOn(schedulerProvider.io())
+        repository.result.subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())
             .subscribe({
                 _liveData.postValue(ViewState.Success(it))

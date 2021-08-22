@@ -34,11 +34,11 @@ class MediaRepository @Inject constructor(
         height = metrics.heightPixels
     }
 
-    override fun getResultFromRemoteDataSource(): Observable<List<Media>> =
-        remoteDataSource.getMedia(SHARED_ID, "$CROP,$BOUNDING_BOX", width, height).flatMap {
+    override val resultFromRemoteDataSource: Observable<List<Media>>
+        get() = remoteDataSource.getMedia(SHARED_ID, "$CROP,$BOUNDING_BOX", width, height).flatMap {
             dao.insert(it.asDatabaseModel()).andThen(Observable.fromCallable { it })
         }
 
-    override fun getResultFromLocalDataSource(): List<Media>? =
-        dao.getMedia()?.asDomainModel()
+    override val resultFromLocalDataSource: List<Media>?
+        get() = dao.getMedia()?.asDomainModel()
 }
