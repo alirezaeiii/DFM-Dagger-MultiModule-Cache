@@ -19,9 +19,9 @@
         android:id="@+id/detailFragment"
         android:name="com.android.sample.feature.list.ui.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_section">
+        tools:layout="@layout/fragment_detail">
         <argument
-            android:name="link"
+            android:name="media"
             app:argType="com.android.sample.core.response.Media" />
     </fragment>
 

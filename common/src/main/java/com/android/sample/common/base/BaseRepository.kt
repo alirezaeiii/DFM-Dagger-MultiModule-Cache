@@ -7,19 +7,19 @@ abstract class BaseRepository<T> {
 
     private var cacheIsDirty = false
 
-    protected abstract fun getResultFromRemoteDataSource(): Observable<T>
+    protected abstract fun getResultFromRemoteDataSource(mediaId: String?): Observable<T>
 
-    protected abstract fun getResultFromLocalDataSource(): T?
+    protected abstract val resultFromLocalDataSource: T?
 
-    private fun getRemoteResult() = getResultFromRemoteDataSource()
+    private fun getRemoteResult(mediaId: String?) = getResultFromRemoteDataSource(mediaId)
         .doOnComplete { cacheIsDirty = false }
 
-    fun getResult(): Observable<T> =
+    fun getResult(mediaId: String?): Observable<T> =
         Observable.fromCallable { cacheIsDirty }.flatMap {
             if (it) {
-                getRemoteResult()
+                getRemoteResult(mediaId)
             } else {
-                val resultFromLocalDataSource = getResultFromLocalDataSource()
+                val resultFromLocalDataSource = resultFromLocalDataSource
                 Observable.create { subscriber ->
                     if (resultFromLocalDataSource == null) {
                         subscriber.onError(NoDataException())
@@ -27,7 +27,7 @@ abstract class BaseRepository<T> {
                         subscriber.onNext(resultFromLocalDataSource)
                     }
                 }
-            }.onErrorResumeNext(getRemoteResult())
+            }.onErrorResumeNext(getRemoteResult(mediaId))
         }
 
     fun refresh() {

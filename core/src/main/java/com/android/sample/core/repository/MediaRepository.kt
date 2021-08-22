@@ -19,11 +19,11 @@ class MediaRepository @Inject constructor(
     private val dao: MediaDao
 ) : BaseListRepository<Media>() {
 
-    override fun getResultFromRemoteDataSource(): Observable<List<Media>> =
+    override fun getResultFromRemoteDataSource(mediaId: String?): Observable<List<Media>> =
         remoteDataSource.getMedia(SHARED_ID, "$CROP,$MINIMUM_SIZE").flatMap {
             dao.insert(it.asDatabaseModel()).andThen(Observable.fromCallable { it })
         }
 
-    override fun getResultFromLocalDataSource(): List<Media>? =
+    override val resultFromLocalDataSource: List<Media>? =
         dao.getMedia()?.asDomainModel()
 }

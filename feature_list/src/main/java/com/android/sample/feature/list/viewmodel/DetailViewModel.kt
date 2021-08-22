@@ -4,9 +4,10 @@ import com.android.sample.common.base.BaseRepository
 import com.android.sample.common.base.BaseViewModel
 import com.android.sample.common.util.schedulers.BaseSchedulerProvider
 import com.android.sample.core.response.Media
+import javax.inject.Inject
 
-class DetailViewModel(
+class DetailViewModel @Inject constructor(
     repository: BaseRepository<Media>,
-    schedulerProvider: BaseSchedulerProvider
-) : BaseViewModel<Media>(repository, schedulerProvider) {
-}
+    schedulerProvider: BaseSchedulerProvider,
+    media: Media
+) : BaseViewModel<Media>(repository, schedulerProvider, media.id)

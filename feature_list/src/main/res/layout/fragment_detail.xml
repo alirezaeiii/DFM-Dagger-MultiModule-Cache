@@ -10,6 +10,10 @@
             name="vm"
             type="com.android.sample.feature.list.viewmodel.DetailViewModel" />
 
+        <variable
+            name="media"
+            type="com.android.sample.core.response.Media" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -23,8 +27,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 style="@style/ToolbarStyle"
-                app:navigationIcon="@drawable/ic_arrow_back"
-                app:title="@string/label_detail" />
+                app:navigationIcon="@drawable/ic_arrow_back" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -44,6 +47,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:showData="@{vm.liveData}">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:imageUrl="@{media.thumbnailUrl}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

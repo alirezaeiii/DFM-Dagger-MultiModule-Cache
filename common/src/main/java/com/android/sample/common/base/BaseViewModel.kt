@@ -16,7 +16,8 @@ import timber.log.Timber
  */
 open class BaseViewModel<T>(
     private val repository: BaseRepository<T>,
-    private val schedulerProvider: BaseSchedulerProvider
+    private val schedulerProvider: BaseSchedulerProvider,
+    private val mediaId : String?
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -34,7 +35,7 @@ open class BaseViewModel<T>(
             repository.refresh()
         }
         _liveData.value = ViewState.Loading
-        repository.getResult().subscribeOn(schedulerProvider.io())
+        repository.getResult(mediaId).subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())
             .subscribe({
                 _liveData.postValue(ViewState.Success(it))

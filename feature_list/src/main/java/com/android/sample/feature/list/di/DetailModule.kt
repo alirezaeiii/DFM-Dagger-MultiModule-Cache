@@ -15,16 +15,17 @@ import dagger.Provides
 class DetailModule(private val fragment: DetailFragment) {
 
     @Provides
-    fun provideSectionViewModel(
+    fun provideDetailViewModel(
         repository: BaseRepository<Media>,
         schedulerProvider: BaseSchedulerProvider,
+        media: Media
     ) = fragment.viewModel {
-        DetailViewModel(repository, schedulerProvider)
+        DetailViewModel(repository, schedulerProvider, media)
     }
 
     @Provides
     internal fun provideLink(): Media {
         val args: DetailFragmentArgs by fragment.navArgs()
-        return args.link
+        return args.media
     }
 }

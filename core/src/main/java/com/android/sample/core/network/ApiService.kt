@@ -18,6 +18,7 @@ interface ApiService {
     fun getMedia(
         @Path("id") id: String,
         @Query("w") width: Int,
-        @Query("h") height: Int
+        @Query("h") height: Int,
+        @Query("m") resizeMode: String
     ): Observable<Media>
 }
