@@ -1,6 +1,6 @@
 import dependencies.Dependencies
 import dependencies.AnnotationProcessorsDependencies
-//import extensions.addTestsDependencies
+import extensions.addTestsDependencies
 import extensions.implementation
 
 plugins {
@@ -38,5 +38,5 @@ dependencies {
     kapt(AnnotationProcessorsDependencies.ROOM)
     kapt(AnnotationProcessorsDependencies.DAGGER)
 
-    //addTestsDependencies()
+    addTestsDependencies()
 }
