@@ -46,7 +46,7 @@ fun setDescriptiveDate(toolbar: Toolbar, timestamp: Long) {
         timestamp,
         now,
         DateUtils.SECOND_IN_MILLIS,
-        DateUtils.FORMAT_ABBREV_RELATIVE
+        DateUtils.FORMAT_SHOW_YEAR
     )
     toolbar.title = relativeDate
 }
