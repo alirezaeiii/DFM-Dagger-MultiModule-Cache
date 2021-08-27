@@ -11,16 +11,16 @@ abstract class BaseRepository<T> {
 
     protected abstract val resultFromLocalDataSource: T?
 
-    private fun getRemoteResult() = resultFromRemoteDataSource
-        .doOnComplete { cacheIsDirty = false }
+    private val remoteResult
+        get() = resultFromRemoteDataSource.doOnComplete { cacheIsDirty = false }
 
-    open fun isEmpty( resultFromLocalDataSource: T?) =
+    open fun isEmpty(resultFromLocalDataSource: T?) =
         resultFromLocalDataSource == null
 
     val result: Observable<T> =
         Observable.fromCallable { cacheIsDirty }.flatMap {
             if (it) {
-                getRemoteResult()
+                remoteResult
             } else {
                 val resultFromLocalDataSource = resultFromLocalDataSource
                 Observable.create { subscriber ->
@@ -30,7 +30,7 @@ abstract class BaseRepository<T> {
                         resultFromLocalDataSource?.let { it1 -> subscriber.onNext(it1) }
                     }
                 }
-            }.onErrorResumeNext(getRemoteResult())
+            }.onErrorResumeNext(remoteResult)
         }
 
     fun refresh() {

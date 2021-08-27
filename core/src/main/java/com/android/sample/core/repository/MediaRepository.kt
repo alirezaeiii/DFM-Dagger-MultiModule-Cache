@@ -39,6 +39,6 @@ class MediaRepository @Inject constructor(
             dao.insert(it.asDatabaseModel()).andThen(Observable.fromCallable { it })
         }
 
-    override val resultFromLocalDataSource: List<Media>?
-        get() = dao.getMedia()?.asDomainModel()
+    override val resultFromLocalDataSource: List<Media>
+        get() = dao.getMedia().asDomainModel()
 }

@@ -12,5 +12,5 @@ interface MediaDao {
     fun insert(medias: List<DbMedia>): Completable
 
     @Query("SELECT * FROM media")
-    fun getMedia(): List<DbMedia>?
+    fun getMedia(): List<DbMedia>
 }
