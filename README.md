@@ -41,6 +41,7 @@ The `:common` module is an [com.android.library](https://developer.android.com/s
    * [Room](https://developer.android.com/topic/libraries/architecture/room) is a library for data storage persistence which provides an abstraction layer over SQLite.
    * [Navigation](https://developer.android.com/guide/navigation/) Android Jetpack's Navigation component helps you implement effective navigation.
 * [Dynamic feature module](https://developer.android.com/guide/app-bundle/play-feature-delivery) allows you to separate certain features and resources from the base module of your app.
+* [Glide](https://github.com/bumptech/glide) is an image loading and caching library for Android.
 * [Dagger](https://developer.android.com/training/dependency-injection/dagger-multi-module) is a fully static, compile-time dependency injection framework for Java, Kotlin, and Android.
 * [RxJava](https://github.com/ReactiveX/RxJava) is a library for composing asynchronous code using observable sequences.
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid) is a module that adds the minimum classes to RxJava to make writing reactive components in Android.
