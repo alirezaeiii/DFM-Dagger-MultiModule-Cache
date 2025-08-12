@@ -33,6 +33,10 @@ The `:common` module is an [com.android.library](https://developer.android.com/s
 * `:features_list` modules depend on `:common`, `:core` and `:app`.
 * `:core` and `:common` don’t have any dependency.
 
+### Inspired from
+[android-modular-architecture](https://github.com/vmadalin/android-modular-architecture)
+| :-: |
+
 ## Libraries
 * [Android Jetpack](https://developer.android.com/jetpack)
    * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) ViewModel is designed to store and manage UI-related data in a lifecycle conscious way. This allows data to survive configuration changes such as screen rotations.
